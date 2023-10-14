@@ -38,11 +38,13 @@ class BotStatus:
         return json.dumps(self, cls=BotStatusEncoder)
 
     def __repr__(self) -> str:
-        return f"BotStatus("\
-                f"{self.timestamp=}, "\
-                f"{self.ball_pos=}, "\
-                f"{self.servo_x=}, "\
-                f"{self.servo_y=})"
+        return (
+            f"BotStatus("
+            f"{self.timestamp=}, "
+            f"{self.ball_pos=}, "
+            f"{self.servo_x=}, "
+            f"{self.servo_y=})"
+        )
 
 
 class BotStatusQueue(Queue):
