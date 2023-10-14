@@ -24,8 +24,8 @@ class BotStatus:
     ) -> None:
         self.timestamp = timestamp
         self.ball_pos = ball_pos
-        self.servo_x = servo_x.angle
-        self.servo_y = servo_y.angle
+        self.x_axis = servo_x.angle
+        self.y_axis = servo_y.angle
 
     # @classmethod
     # def make(cls, ball_pos: Vec2D, servo_x: Servo, servo_y: Servo) -> BotStatus:
@@ -42,8 +42,8 @@ class BotStatus:
             f"BotStatus("
             f"{self.timestamp=}, "
             f"{self.ball_pos=}, "
-            f"{self.servo_x=}, "
-            f"{self.servo_y=})"
+            f"{self.x_axis=}, "
+            f"{self.y_axis=})"
         )
 
 
@@ -72,5 +72,5 @@ class BotStatusEncoder(json.JSONEncoder):
         return {
             "timestamp": o.timestamp,
             "ballPos": list(o.ball_pos),
-            "servo": [o.servo_x, o.servo_y],
+            "servo": [o.x_axis, o.y_axis],
         }
