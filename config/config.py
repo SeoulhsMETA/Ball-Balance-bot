@@ -1,7 +1,6 @@
 """parse config file"""
 
 from sys import version_info
-from pathlib import Path
 from typing import Any
 
 CONFIG_PATH = "config.toml"
@@ -15,6 +14,7 @@ else:
     with open(CONFIG_PATH, "r") as f:
         _config = toml.load(f)
 
-def get_config() -> dict[Any]:
+
+def get_config() -> dict[Any:Any]:
     """get config data"""
     return _config
