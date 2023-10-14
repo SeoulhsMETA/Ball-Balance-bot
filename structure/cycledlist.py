@@ -20,7 +20,7 @@ class CycledListIterator(Iterator):
         """get current indexed data"""
         return self._data[self._index]
 
-    def __init__(self, data: Sequence) -> None:
+    def __init__(self, data: Sequence[Any]) -> None:
         super().__init__()
         self._index = 0
         self._data = tuple(data)
