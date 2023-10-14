@@ -2,18 +2,19 @@
 
 from sys import version_info
 from pathlib import Path
+from typing import Any
 
 CONFIG_PATH = "config.toml"
 
+if version_info.major == 3 and version_info.minor >= 11:
+    # import tomllib
+    pass
+else:
+    import toml
 
-def get_config(path: str = CONFIG_PATH):
+    with open(CONFIG_PATH, "r") as f:
+        _config = toml.load(f)
+
+def get_config() -> dict[Any]:
     """get config data"""
-    if version_info.major == 3 and version_info.minor >= 11:
-        # import tomllib
-        pass
-    else:
-        import toml
-
-        with Path(path).open("r") as f:
-            return toml.load(f)
-
+    return _config
