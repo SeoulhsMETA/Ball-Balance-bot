@@ -1,5 +1,5 @@
 numpy>=1.26.0
 pillow>=10.0.1
 requests>=2.31.0
-# gpiozero
+gpiozero>=2.0
 # picamera
