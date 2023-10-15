@@ -6,6 +6,7 @@ from collections.abc import Iterator, Sequence
 
 T = TypeVar("T")
 
+
 class CycledList(list[T]):
     """Cycled list"""
 
