@@ -9,7 +9,7 @@ import json
 
 from gpiozero import AngularServo
 
-from structure.vector import Vec2D
+from model.vector import Vec2D
 
 
 class BotStatus:
