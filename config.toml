@@ -1,3 +1,9 @@
 [servo]
 x_axis_pin = 0
 y_axis_pin = 0
+
+[detector]
+# ball detector's color detection range 
+r = [0, 0]
+g = [0, 0]
+b = [0, 0]
