@@ -11,10 +11,10 @@ if version_info.major == 3 and version_info.minor >= 11:
 else:
     import toml
 
-    with open(CONFIG_PATH, "r") as f:
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
         _config = toml.load(f)
 
 
-def get_config() -> dict[Any:Any]:
+def get_config() -> dict[str:Any]:
     """get config data"""
     return _config
