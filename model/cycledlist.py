@@ -20,17 +20,27 @@ class CycledListIterator(Iterator[T]):
     @property
     def current(self) -> T:
         """get current indexed data"""
-        return self._data[self._index]
+        return self._data[self._pointer]
+
+    @property
+    def pointer(self) -> int:
+        """get pointer"""
+        return self._pointer
+    
+    @pointer.setter
+    def pointer(self, new: int) -> None:
+        """set pointer"""
+        self._pointer = new % len(self._data)
 
     def init(self) -> None:
         """init Iterator, set index 0"""
-        self._index = 0
+        self._pointer = 0
 
     def __init__(self, data: Sequence[T]) -> None:
         super().__init__()
-        self._index = 0
+        self._pointer = 0
         self._data = tuple(data)
 
     def __next__(self) -> T:
-        self._index = (self._index + 1) % len(self._data)
-        return self._data[self._index - 1]
+        self.pointer += 1
+        return self._data[self._pointer - 1]
