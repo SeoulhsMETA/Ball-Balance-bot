@@ -22,6 +22,10 @@ class CycledListIterator(Iterator[T]):
         """get current indexed data"""
         return self._data[self._index]
 
+    def init(self) -> None:
+        """init Iterator, set index 0"""
+        self._index = 0
+
     def __init__(self, data: Sequence[T]) -> None:
         super().__init__()
         self._index = 0

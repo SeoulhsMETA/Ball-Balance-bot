@@ -24,6 +24,10 @@ class BallMovement:
             "accuracy"
         ]
 
+    def init(self) -> None:
+        """init movement"""
+        self._cycled_pos.init()
+
     def next(self, ball_pos: Vec2D) -> Vec2D:
         """get next target pos"""
         if ball_pos.distance_to(self._cycled_pos.current) <= self._accuracy:
