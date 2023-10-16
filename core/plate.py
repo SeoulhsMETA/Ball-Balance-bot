@@ -15,10 +15,12 @@ class PlateController:
         self.servo_x = AngularServo(pin=config["servo"]["x_axis_pin"])
         self.servo_y = AngularServo(pin=config["servo"]["x_axis_pin"])
 
-    def tilt_by(self) -> None:
-        """rotate relatively"""
-        return
-
-    def tilt_to(self) -> None:
-        """rotate absolutely"""
-        return
+    #Rotate servo absolutely
+    def tilt_to(self,xAngle,yAngle) -> None:
+        self.servo_x.angle = xAngle
+        self.servo_y.angle = yAngle
+    
+    #Rotate servo relatively
+    def tilt_by(self,d_xAngle,d_yAngle) -> None:
+        self.servo_x.angle +=  d_xAngle
+        self.servo_y.angle +=  d_yAngle        
