@@ -1,6 +1,6 @@
-[servo]
-x_axis_pin = 0
-y_axis_pin = 0
+[plate]
+servo_x_pin = 0
+servo_y_pin = 0
 
 [detector]
 # ball detector's color detection range 
