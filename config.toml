@@ -7,3 +7,6 @@ servo_y_pin = 0
 r = [0, 0]
 g = [0, 0]
 b = [0, 0]
+
+[mode]
+button_pin = 0
