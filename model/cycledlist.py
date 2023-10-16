@@ -32,10 +32,6 @@ class CycledListIterator(Iterator[T]):
         """set pointer"""
         self._pointer = new % len(self._data)
 
-    def init(self) -> None:
-        """init Iterator, set index 0"""
-        self._pointer = 0
-
     def __init__(self, data: Sequence[T]) -> None:
         super().__init__()
         self._pointer = 0
