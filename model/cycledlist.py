@@ -26,7 +26,7 @@ class CycledListIterator(Iterator[T]):
     def pointer(self) -> int:
         """get pointer"""
         return self._pointer
-    
+
     @pointer.setter
     def pointer(self, new: int) -> None:
         """set pointer"""
