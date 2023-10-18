@@ -20,3 +20,9 @@ class Vec2D(NamedTuple):
 
     def __add__(self, other: Vec2D) -> Vec2D:
         return Vec2D(self.x + other.x, self.y + other.y)
+
+    def __truediv__(self, other: float) -> Vec2D:
+        return Vec2D(self.x / other, self.y / other)
+
+    def __floordiv__(self, other: float) -> Vec2D:
+        return Vec2D(self.x // other, self.y // other)
