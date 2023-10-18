@@ -13,9 +13,9 @@ class BallFinder:
 
     def __init__(self) -> None:
         config = get_config()
-        self._r_range = config["detector"]["r"]
-        self._g_range = config["detector"]["g"]
-        self._b_range = config["detector"]["b"]
+        self._r_range: list[int, int] = config["detector"]["r"]
+        self._g_range: list[int, int] = config["detector"]["g"]
+        self._b_range: list[int, int] = config["detector"]["b"]
 
     def find_pos(self, image: NDArray) -> Vec2D:
         """calc the position of the ball using the array image"""
