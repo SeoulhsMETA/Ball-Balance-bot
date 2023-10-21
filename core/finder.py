@@ -1,18 +1,18 @@
 """Find Ball in array image"""
 
 from __future__ import annotations
+from typing import Sequence
 
 from numpy import ndarray
 
 from model.vector import Vec2D
-from config.config import get_config
 
 
 class BallFinder:
     """Detect Ball in 3D array image"""
 
     def __init__(
-        self, r_range: list[int, int], g_range: list[int, int], b_range: list[int, int]
+        self, r_range: Sequence[int], g_range: Sequence[int], b_range: Sequence[int]
     ) -> None:
         self._r_range = range(r_range[0], r_range[1] + 1)
         self._g_range = range(g_range[0], g_range[1] + 1)
@@ -23,11 +23,11 @@ class BallFinder:
         from config.config import get_config
 
         config = get_config()
-        _r_range = range(config["detector"]["r"][0], config["detector"]["r"][1] + 1)
-        _g_range = range(config["detector"]["g"][0], config["detector"]["g"][1] + 1)
-        _b_range = range(config["detector"]["b"][0], config["detector"]["b"][1] + 1)
+        r_range = (config["detector"]["r"][0], config["detector"]["r"][1] + 1)
+        g_range = (config["detector"]["g"][0], config["detector"]["g"][1] + 1)
+        b_range = (config["detector"]["b"][0], config["detector"]["b"][1] + 1)
 
-        return cls(_r_range, _g_range, _b_range)
+        return cls(r_range, g_range, b_range)
 
     def find_pos(self, arr_image: ndarray[ndarray[int, int, int]]) -> Vec2D:
         """calc the position of the ball using the array image"""
@@ -41,4 +41,9 @@ class BallFinder:
                 ):
                     ball_loc.append(Vec2D(x, y))
 
-        return ball_loc
+        result = Vec2D(0, 0)
+        for vec in ball_loc:
+            result += vec
+        result /= len(ball_loc)
+
+        return result

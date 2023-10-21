@@ -2,7 +2,8 @@ from core.finder import BallFinder
 from numpy import ndarray
 import numpy as np
 
-find = BallFinder()
+
+find = BallFinder.from_config()
 
 image = np.array(
     [
