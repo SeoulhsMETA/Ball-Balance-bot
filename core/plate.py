@@ -20,12 +20,12 @@ class PlateController:
 
         return cls(config["plate"]["servo_x_pin"], config["plate"]["servo_y_pin"])
 
-    def tilt_to(self, xAngle: float, yAngle: float) -> None:
+    def tilt_to(self, x_angle: float, y_angle: float) -> None:
         """Rotate servo absolutely"""
-        self.servo_x.angle = xAngle
-        self.servo_y.angle = yAngle
+        self.servo_x.angle = x_angle
+        self.servo_y.angle = y_angle
 
-    def tilt_by(self, d_xAngle: float, d_yAngle: float) -> None:
+    def tilt_by(self, dx_angle: float, dy_angle: float) -> None:
         """Rotate servo relatively"""
-        self.servo_x.angle += d_xAngle
-        self.servo_y.angle += d_yAngle
+        self.servo_x.angle += dx_angle
+        self.servo_y.angle += dy_angle
