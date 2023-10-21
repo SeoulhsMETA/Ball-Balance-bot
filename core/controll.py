@@ -1,4 +1,4 @@
-"""controll ball with PID"""
+"""control ball with PID"""
 
 from __future__ import annotations
 
@@ -13,5 +13,5 @@ class BallControl:
         self.plate = plate_controller
 
     def process(self, movement, ball_pos: Vec2D) -> None:
-        """controll ball to target pos"""
+        """control ball to target pos"""
         raise NotImplementedError
