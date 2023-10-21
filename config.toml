@@ -4,9 +4,9 @@ servo_y_pin = 0
 
 [detector]
 # ball detector's color detection range 
-r = [0, 0]
-g = [0, 0]
-b = [0, 0]
+r = [90, 100]
+g = [90, 100]
+b = [90, 100]
 
 [mode]
 button_pin = 0
