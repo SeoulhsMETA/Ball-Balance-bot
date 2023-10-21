@@ -6,8 +6,8 @@ from core.plate import PlateController
 from model.vector import Vec2D
 
 
-class BallControll:
-    """PID controll using the plate controller"""
+class BallControl:
+    """PID control using the plate controller"""
 
     def __init__(self, plate_controller: PlateController) -> None:
         self.plate = plate_controller
