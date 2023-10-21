@@ -1,14 +1,15 @@
 """Bot status data structure"""
 
 from __future__ import annotations
+
 from typing import Optional
 from queue import Queue
 import json
-
-# import time
+import time
 
 from gpiozero import AngularServo
 
+from core.plate import PlateController
 from model.vector import Vec2D
 
 
@@ -27,11 +28,11 @@ class BotStatus:
         self.x_axis = servo_x.angle
         self.y_axis = servo_y.angle
 
-    # @classmethod
-    # def make(cls, ball_pos: Vec2D, servo_x: Servo, servo_y: Servo) -> BotStatus:
-    #     """make BotStatus automatically"""
-    #     timestamp = datetime.datetime.now().date()
-    #     return cls(timestamp, ball_pos, servo_x, servo_y)
+    @classmethod
+    def make(cls, ball_pos: Vec2D, plate: PlateController) -> BotStatus:
+        """make BotStatus automatically"""
+        timestamp = time.time()
+        return cls(timestamp, ball_pos, plate.servo_x.angle, plate.servo_y.angle)
 
     def to_jsons(self) -> str:
         """convert to json"""
