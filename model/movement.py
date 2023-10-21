@@ -26,7 +26,7 @@ class BallMovement:
 
     def init(self) -> None:
         """init movement"""
-        self._cycled_pos.init()
+        self._cycled_pos.pointer = 0
 
     def next(self, ball_pos: Vec2D) -> Vec2D:
         """get next target pos"""
