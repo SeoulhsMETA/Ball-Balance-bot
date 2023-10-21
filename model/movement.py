@@ -2,7 +2,6 @@
 
 from collections.abc import Sequence
 from math import radians, sin, cos
-import math
 
 from model.cycledlist import CycledList, CycledListIterator
 from model.vector import Vec2D
@@ -38,12 +37,12 @@ class BallMovement:
 
 
 class StaticPos(BallMovement):
-    def init(self, pos: POS) -> None:
-        super().init([])
+    def __init__(self, pos: POS) -> None:
+        super().__init__([])
         if isinstance(pos, Vec2D):
             self.pos = pos
         else:
-            self.pos = Vec2D(pos)
+            self.pos = Vec2D(*pos)
         self._accuracy = 0
 
     def next(self, ball_pos: Vec2D) -> Vec2D:
@@ -51,10 +50,5 @@ class StaticPos(BallMovement):
 
 
 class CircleMovement(BallMovement):
-    def init(self, radius: int, step: float = 1) -> None:
-        super().init(
-            (
-                (radius * cos(radians(i)), radius * sin(radians(i)))
-                for i in range(0, 360, step)
-            )
-        )
+    def __init__(self, radius: int) -> None:
+        super().__init__([(radius * cos(radians(i)), radius * sin(radians(i))) for i in range(0, 360)])
