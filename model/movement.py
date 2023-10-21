@@ -1,16 +1,20 @@
 """Define Ball Movement"""
 
 from collections.abc import Sequence
+from math import radians, sin, cos
+import math
 
 from model.cycledlist import CycledList, CycledListIterator
 from model.vector import Vec2D
-from config.config import get_config
+
+
+POS = Vec2D | Sequence[float]
 
 
 class BallMovement:
     """Define ball movement"""
 
-    def __init__(self, cycle: Sequence[Vec2D | Sequence[float]]) -> None:
+    def __init__(self, cycle: Sequence[POS]) -> None:
         cycled_list = CycledList()
         for vec in cycle:
             if isinstance(vec, Vec2D):
@@ -20,9 +24,7 @@ class BallMovement:
 
         self._cycled_pos: CycledListIterator = iter(cycled_list)
 
-        self._accuracy: float = get_config()["movement"][self.__class__.__name__][
-            "accuracy"
-        ]
+        self._accuracy: float = 0
 
     def init(self) -> None:
         """init movement"""
@@ -33,3 +35,26 @@ class BallMovement:
         if ball_pos.distance_to(self._cycled_pos.current) <= self._accuracy:
             return next(self._cycled_pos)
         return self._cycled_pos.current
+
+
+class StaticPos(BallMovement):
+    def init(self, pos: POS) -> None:
+        super().init([])
+        if isinstance(pos, Vec2D):
+            self.pos = pos
+        else:
+            self.pos = Vec2D(pos)
+        self._accuracy = 0
+
+    def next(self, ball_pos: Vec2D) -> Vec2D:
+        return self.pos
+
+
+class CircleMovement(BallMovement):
+    def init(self, radius: int, step: float = 1) -> None:
+        super().init(
+            (
+                (radius * cos(radians(i)), radius * sin(radians(i)))
+                for i in range(0, 360, step)
+            )
+        )

@@ -41,9 +41,15 @@ class BallFinder:
                 ):
                     ball_loc.append(Vec2D(x, y))
 
-        result = Vec2D(0, 0)
-        for vec in ball_loc:
-            result += vec
-        result /= len(ball_loc)
+        if (length := len(ball_loc)):
+            result = Vec2D(0, 0)
+            for vec in ball_loc:
+                result += vec
+            result /= length
 
-        return result
+            return result
+        
+        raise BallNotFoundError
+
+class BallNotFoundError(Exception):
+    pass
