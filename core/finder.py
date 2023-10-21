@@ -3,7 +3,7 @@
 from __future__ import annotations
 from typing import Sequence
 
-from numpy import ndarray
+from numpy import ndarray, nditer
 
 from model.vector import Vec2D
 
@@ -31,23 +31,28 @@ class BallFinder:
 
     def find_pos(self, arr_image: ndarray[ndarray[int, int, int]]) -> Vec2D:
         """calc the position of the ball using the array image"""
-        ball_loc = []
-        for y, arr in enumerate(arr_image):
-            for x, rgb in enumerate(arr):
-                if (
-                    rgb[0] in self._r_range
-                    and rgb[1] in self._g_range
-                    and rgb[2] in self._b_range
-                ):
-                    ball_loc.append(Vec2D(x, y))
+        vec = Vec2D(0, 0)
+        count = 0
 
-        if (length := len(ball_loc)):
-            result = Vec2D(0, 0)
-            for vec in ball_loc:
-                result += vec
-            result /= length
+        it = nditer(arr_image, flags=["multi_index"])
 
-            return result
+        rgb = []
+
+        while not it.finished:
+            index = it.multi_index
+            x, y = index[0], index[1]
+            rgb.append(arr_image[index])
+
+            if len(rgb) == 3:
+                if rgb[0] in self._r_range and rgb[1] in self._g_range and rgb[2] in self._b_range:
+                    vec += Vec2D(x, y)
+                    count += 1
+                rgb.clear()
+            
+            it.iternext()
+
+        if count:
+            return vec / count
         
         raise BallNotFoundError
 
