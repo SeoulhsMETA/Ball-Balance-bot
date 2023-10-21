@@ -3,5 +3,5 @@ pillow>=10.0.1
 gpiozero>=2.0
 toml>=0.10.2
 python-socketio>=5.10.0
-# picamera>=1.13
+picamera>=1.13
 opencv-python>=4.8.1.78

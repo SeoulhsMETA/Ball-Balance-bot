@@ -1,11 +1,12 @@
 from picamera import PiCamera
-frmo picamera.array import PiRGBArray
+from picamera.array import PiRGBArray
 
 from core.controll import BallControl
 from core.finder import BallFinder
 from core.mode import ModeHandler
 from core.plate import PlateController
 from model.status import BotStatusQueue, BotStatus
+
 
 class Bot:
     def __init__(self, status_queue: BotStatusQueue):
@@ -29,6 +30,7 @@ class Bot:
             self.pid.process(movement, ball_pos)
 
             self.status_queue.put(BotStatus.make(ball_pos, self.plate))
+
 
 class Main:
     def __init__(self):
