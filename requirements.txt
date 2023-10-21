@@ -4,3 +4,4 @@ gpiozero>=2.0
 toml>=0.10.2
 python-socketio>=5.10.0
 # picamera
+opencv-python>=4.8.1.78
