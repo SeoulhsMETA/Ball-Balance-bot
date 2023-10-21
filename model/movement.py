@@ -51,4 +51,9 @@ class StaticPos(BallMovement):
 
 class CircleMovement(BallMovement):
     def __init__(self, radius: int) -> None:
-        super().__init__([(radius * cos(radians(i)), radius * sin(radians(i))) for i in range(0, 360)])
+        super().__init__(
+            [
+                (radius * cos(radians(i)), radius * sin(radians(i)))
+                for i in range(0, 360)
+            ]
+        )

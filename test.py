@@ -4,7 +4,7 @@ from picamera.array import PiRGBArray
 from core.finder import BallFinder
 
 cam = PiCamera()
-cam.resolution = (256,144)
+cam.resolution = (256, 144)
 output = PiRGBArray(cam)
 
 finder = BallFinder.from_config()

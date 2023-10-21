@@ -44,17 +44,22 @@ class BallFinder:
             rgb.append(arr_image[index])
 
             if len(rgb) == 3:
-                if rgb[0] in self._r_range and rgb[1] in self._g_range and rgb[2] in self._b_range:
+                if (
+                    rgb[0] in self._r_range
+                    and rgb[1] in self._g_range
+                    and rgb[2] in self._b_range
+                ):
                     vec += Vec2D(x, y)
                     count += 1
                 rgb.clear()
-            
+
             it.iternext()
 
         if count:
             return vec / count
-        
+
         raise BallNotFoundError
+
 
 class BallNotFoundError(Exception):
     pass
