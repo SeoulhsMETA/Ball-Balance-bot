@@ -16,7 +16,7 @@ class BallMovement:
             if isinstance(vec, Vec2D):
                 cycled_list.append(vec)
             else:
-                cycled_list.append(Vec2D(vec))
+                cycled_list.append(Vec2D(*vec))
 
         self._cycled_pos: CycledListIterator = iter(cycled_list)
 
