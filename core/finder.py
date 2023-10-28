@@ -12,9 +12,7 @@ from model.vector import Vec2D
 class BallFinder:
     """Detect Ball in 3D array image"""
 
-    def __init__(
-            self, lower: Sequence[int], upper: Sequence[int]
-    ) -> None:
+    def __init__(self, lower: Sequence[int], upper: Sequence[int]) -> None:
         self.lower = numpy.array(lower)
         self.upper = numpy.array(upper)
 

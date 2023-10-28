@@ -1,3 +1,9 @@
+"""Ball Controll Bot"""
+
+from __future__ import annotations
+from typing import NoReturn
+import asyncio
+
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 
@@ -9,7 +15,9 @@ from model.status import BotStatusQueue, BotStatus
 
 
 class Bot:
-    def __init__(self, status_queue: BotStatusQueue):
+    """Controll Bot"""
+
+    def __init__(self, status_queue: BotStatusQueue) -> None:
         self.camera = PiCamera()
         self.camera_output = PiRGBArray(self.camera)
 
@@ -20,7 +28,8 @@ class Bot:
 
         self.status_queue = status_queue
 
-    def run(self):
+    async def run(self) -> NoReturn:
+        """run bot"""
         while True:
             self.camera.capture(self.camera_output, format="bgr")
 
@@ -32,7 +41,30 @@ class Bot:
             self.status_queue.put(BotStatus.make(ball_pos, self.plate))
 
 
+class Reporter:
+    """ "Bot status reporter"""
+
+    def __init__(self, status_queue: BotStatusQueue) -> None:
+        self.status_queue = status_queue
+
+    async def run(self) -> NoReturn:
+        """run reporter"""
+        return
+
+
 class Main:
-    def __init__(self):
+    """Main"""
+
+    def __init__(self) -> None:
         self.status_queue = BotStatusQueue()
+
         self.bot = Bot(self.status_queue)
+        self.reporter = Reporter(self.status_queue)
+
+    async def run(self) -> NoReturn:
+        """run bot and reporter"""
+        asyncio.gather(self.bot.run(), self.reporter.run())
+
+
+if __name__ == "__main__":
+    asyncio.run(Main().run())
