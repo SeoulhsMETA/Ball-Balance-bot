@@ -8,6 +8,7 @@ from core.controll import BallControl
 from core.finder import BallFinder
 from core.mode import ModeHandler
 from core.plate import PlateController
+from core.client import SocketIOClient
 from model.status import BotStatusQueue, BotStatus
 
 
@@ -26,7 +27,6 @@ class Bot:
         self.status_queue = status_queue
 
     async def run(self) -> NoReturn:
-        """run bot"""
         while True:
             self.camera.capture(self.camera_output, format="bgr")
 
@@ -42,8 +42,9 @@ class Reporter:
     """ "Bot status reporter"""
 
     def __init__(self, status_queue: BotStatusQueue) -> None:
+        self.client = SocketIOClient.from_config()
+
         self.status_queue = status_queue
 
     async def run(self) -> NoReturn:
-        """run reporter"""
         return

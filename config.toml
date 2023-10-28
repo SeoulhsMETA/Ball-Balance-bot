@@ -9,3 +9,6 @@ upper = [50, 50, 200]
 
 [mode]
 button_pin = 0
+
+[client]
+url = ""

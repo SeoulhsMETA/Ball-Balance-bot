@@ -8,8 +8,6 @@ from core import Bot, Reporter
 from model.status import BotStatusQueue
 
 class Main:
-    """Main"""
-
     def __init__(self) -> None:
         self.status_queue = BotStatusQueue()
 
