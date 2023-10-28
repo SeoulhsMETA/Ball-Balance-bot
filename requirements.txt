@@ -5,3 +5,4 @@ toml>=0.10.2
 python-socketio>=5.10.0
 picamera>=1.13
 opencv-python>=4.8.1.78
+python-socketio>=5.10.0
