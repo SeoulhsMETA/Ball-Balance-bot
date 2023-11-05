@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import NoReturn
 
-from picamera import PiCamera
-from picamera.array import PiRGBArray
+# from picamera import PiCamera
+# from picamera.array import PiRGBArray
 
 from core.controll import BallControl
 from core.finder import BallFinder
