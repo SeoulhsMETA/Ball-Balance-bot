@@ -13,7 +13,7 @@ from model.status import BotStatusQueue, BotStatus
 
 
 class Bot:
-    """Controll Bot"""
+    """Control Bot"""
 
     def __init__(self, status_queue: BotStatusQueue) -> None:
         self.camera = PiCamera()
@@ -39,7 +39,7 @@ class Bot:
 
 
 class Reporter:
-    """ "Bot status reporter"""
+    """Bot status reporter"""
 
     def __init__(self, status_queue: BotStatusQueue) -> None:
         self.client = SocketIOClient.from_config()

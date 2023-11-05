@@ -1,4 +1,4 @@
-"""Ball Controll Bot"""
+"""Ball Control Bot"""
 
 from __future__ import annotations
 from typing import NoReturn
@@ -6,6 +6,7 @@ import asyncio
 
 from core import Bot, Reporter
 from model.status import BotStatusQueue
+
 
 class Main:
     def __init__(self) -> None:
@@ -16,7 +17,7 @@ class Main:
 
     async def run(self) -> NoReturn:
         """run bot and reporter"""
-        asyncio.gather(self.bot.run(), self.reporter.run())
+        await asyncio.gather(self.bot.run(), self.reporter.run())
 
 
 if __name__ == "__main__":
