@@ -1,8 +1,8 @@
 from __future__ import annotations
 from typing import NoReturn
 
-# from picamera import PiCamera
-# from picamera.array import PiRGBArray
+from picamera import PiCamera
+from picamera.array import PiRGBArray
 
 from core.controll import BallControl
 from core.finder import BallFinder
@@ -28,7 +28,7 @@ class Bot:
 
     async def run(self) -> NoReturn:
         while True:
-            self.camera.capture(self.camera_output, format="bgr")
+            self.camera.capture(self.camera_output, format="rgb")
 
             ball_pos = self.finder.find_pos(self.camera_output.array)
             movement = self.mode.update()

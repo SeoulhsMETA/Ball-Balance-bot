@@ -3,7 +3,6 @@
 from __future__ import annotations
 from typing import Sequence
 
-import cv2
 import numpy
 
 from model.vector import Vec2D
@@ -28,8 +27,7 @@ class BallFinder:
 
     def find_pos(self, arr_image: numpy.ndarray) -> Vec2D:
         """calc the position of the ball using the array image"""
-        red_img = cv2.inRange(arr_image, self.lower, self.upper)
-        x_arr, y_arr = numpy.where(red_img > 0)
+        x_arr, y_arr = numpy.where(((self.lower <= arr_image) & (arr_image <= self.upper)).all(axis=2))
 
         if x_arr.size:
             return Vec2D(numpy.average(x_arr), numpy.average(y_arr))
