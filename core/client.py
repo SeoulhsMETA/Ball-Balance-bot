@@ -23,4 +23,5 @@ class SocketIOClient:
         await self._socket.connect(self.url)
 
     async def send(self, status_data: BotStatus) -> None:
+        self._socket.emit('update_status',status_data)
         return
