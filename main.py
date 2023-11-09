@@ -4,7 +4,7 @@ from __future__ import annotations
 from typing import NoReturn
 import asyncio
 
-from core import Bot, Reporter
+from core import Bot, Client
 from model.status import BotStatusQueue
 
 
@@ -13,7 +13,7 @@ class Main:
         self.status_queue = BotStatusQueue()
 
         self.bot = Bot(self.status_queue)
-        self.reporter = Reporter(self.status_queue)
+        self.reporter = Client(self.status_queue)
 
     async def run(self) -> NoReturn:
         """run bot and reporter"""

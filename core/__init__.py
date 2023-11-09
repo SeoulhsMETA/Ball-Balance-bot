@@ -11,7 +11,6 @@ from core.controll import BallControl
 from core.finder import BallFinder
 from core.mode import ModeHandler
 from core.plate import PlateController
-from core.client import SocketIOClient
 from model.status import BotStatusQueue, BotStatus
 from config.config import get_config
 
@@ -56,4 +55,4 @@ class Client:
             while True:
                 await asyncio.sleep(1)
                 if (status_data := self.status_queue.get()) is not None:
-                    await sio.emit("update_status", dict(status_data))
+                    await sio.emit("update_status", status_data.to_dict())
