@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from typing import Optional
 from queue import Queue
-import json
 import time
 
 from gpiozero import AngularServo
@@ -48,7 +47,7 @@ class BotStatus:
             "timestamp": self.timestamp,
             "ball_pos": self.ball_pos,
             "x_axis": self.x_axis,
-            "y_axis": self.y_axis
+            "y_axis": self.y_axis,
         }
 
 

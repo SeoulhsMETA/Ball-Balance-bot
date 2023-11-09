@@ -57,4 +57,3 @@ class Client:
                 await asyncio.sleep(1)
                 if (status_data := self.status_queue.get()) is not None:
                     await sio.emit("update_status", dict(status_data))
-

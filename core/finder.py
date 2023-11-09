@@ -12,10 +12,10 @@ class BallFinder:
     """Detect Ball in 3D array image"""
 
     def __init__(
-            self,
-            lower: Sequence[int],
-            upper: Sequence[int],
-            part_search_size: Sequence[int],
+        self,
+        lower: Sequence[int],
+        upper: Sequence[int],
+        part_search_size: Sequence[int],
     ) -> None:
         self.latest_pos: Optional[Vec2D] = None
         self.lower = numpy.array(lower)
@@ -43,14 +43,26 @@ class BallFinder:
 
             pos = Vec2D(numpy.average(x_arr), numpy.average(y_arr))
         else:
-            clip_rect = (self.latest_pos.x - (self.part_size[0] // 2), self.latest_pos.y - (self.part_size[1] // 2), self.part_size[0] + 1, self.part_size[1] + 1)
+            clip_rect = (
+                self.latest_pos.x - (self.part_size[0] // 2),
+                self.latest_pos.y - (self.part_size[1] // 2),
+                self.part_size[0] + 1,
+                self.part_size[1] + 1,
+            )
             # part search
-            part_img_arr = arr_image[clip_rect[0]:clip_rect[0] + clip_rect[2], clip_rect[1]:clip_rect[1] + clip_rect[3]]
+            part_img_arr = arr_image[
+                clip_rect[0] : clip_rect[0] + clip_rect[2],
+                clip_rect[1] : clip_rect[1] + clip_rect[3],
+            ]
             x_arr, y_arr = numpy.where(
-                ((self.lower <= part_img_arr) & (part_img_arr <= self.upper)).all(axis=2)
+                ((self.lower <= part_img_arr) & (part_img_arr <= self.upper)).all(
+                    axis=2
+                )
             )
 
-            pos = Vec2D(clip_rect[0] + numpy.average(x_arr), clip_rect[1] + numpy.average(y_arr))
+            pos = Vec2D(
+                clip_rect[0] + numpy.average(x_arr), clip_rect[1] + numpy.average(y_arr)
+            )
 
         if not pos.is_nan():
             self.latest_pos = Vec2D(round(pos.x), round(pos.y))
