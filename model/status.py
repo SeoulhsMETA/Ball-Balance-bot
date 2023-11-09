@@ -34,10 +34,6 @@ class BotStatus:
         timestamp = time.time()
         return cls(timestamp, ball_pos, plate.servo_x.angle, plate.servo_y.angle)
 
-    def to_jsons(self) -> str:
-        """convert to json"""
-        return json.dumps(self, cls=BotStatusEncoder)
-
     def __repr__(self) -> str:
         return (
             f"BotStatus("
@@ -46,6 +42,14 @@ class BotStatus:
             f"{self.x_axis=}, "
             f"{self.y_axis=})"
         )
+
+    def __dict__(self) -> dict:
+        return {
+            "timestamp": self.timestamp,
+            "ball_pos": self.ball_pos,
+            "x_axis": self.x_axis,
+            "y_axis": self.y_axis
+        }
 
 
 class BotStatusQueue(Queue):
@@ -64,14 +68,3 @@ class BotStatusQueue(Queue):
         if self.full():
             return super().get(block, timeout)
         return None
-
-
-class BotStatusEncoder(json.JSONEncoder):
-    """json encoder for BotStatus"""
-
-    def default(self, o: BotStatus) -> dict:
-        return {
-            "timestamp": o.timestamp,
-            "ballPos": list(o.ball_pos),
-            "servo": [o.x_axis, o.y_axis],
-        }
