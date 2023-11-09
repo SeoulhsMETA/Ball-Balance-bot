@@ -4,6 +4,8 @@ from __future__ import annotations
 from typing import NamedTuple
 from math import dist
 
+import numpy
+
 
 class Vec2D(NamedTuple):
     """2D vector point"""
@@ -14,6 +16,9 @@ class Vec2D(NamedTuple):
     def distance_to(self, to_vec: Vec2D) -> float:
         """calc distance to another vector"""
         return dist(self, to_vec)
+
+    def is_nan(self):
+        return numpy.isnan(self.x) or numpy.isnan(self.y)
 
     def __repr__(self) -> str:
         return f"Vec2D({self.x=}, {self.y=})"
