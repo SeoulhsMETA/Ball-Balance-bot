@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import asyncio
+import time
 from typing import NoReturn
 
 from picamera import PiCamera
 from picamera.array import PiRGBArray
 from socketio import AsyncClient
 
-from core.controll import BallControl
+from core.control import BallControl
 from core.finder import BallFinder
 from core.mode import ModeHandler
 from core.plate import PlateController
