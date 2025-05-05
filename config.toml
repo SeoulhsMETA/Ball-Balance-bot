@@ -1,20 +1,27 @@
 [plate]
+# servo pin to control plate
 servo_x_pin = 0
 servo_y_pin = 0
 
-[detector]
-# ball detector's color detection range
-lower = [90, 20, 20]
-upper = [200, 50, 50]
-part_search_size = [700, 700]
+[finder]
+# ball color detection range
+min = [90, 20, 20]
+max = [200, 50, 50]
+
+[finder.part_search]
+# ball detection range for memorization
+size = [700, 700]
 
 [mode]
+# push button pin for changing ball movement modes
 button_pin = 0
 
 [client]
+# socketio url to update current status in real-time
 url = ""
 
 [pid]
+# PID constants
 kp = 0.1
 ki = 0.1
 kd = 0.01

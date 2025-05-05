@@ -13,13 +13,13 @@ class BallFinder:
 
     def __init__(
         self,
-        lower: Sequence[int],
-        upper: Sequence[int],
+        minimum: Sequence[int],
+        maximum: Sequence[int],
         part_search_size: Sequence[int],
     ) -> None:
         self.latest_pos: Optional[Vec2D] = None
-        self.lower = numpy.array(lower)
-        self.upper = numpy.array(upper)
+        self.minimum = numpy.array(minimum)
+        self.maximum = numpy.array(maximum)
         self.part_size = part_search_size
 
     @classmethod
@@ -27,18 +27,18 @@ class BallFinder:
         from config.config import get_config
 
         config = get_config()
-        lower = config["detector"]["lower"]
-        upper = config["detector"]["upper"]
-        part_search_size = config["detector"]["part_search_size"]
+        minimum = config["finder"]["min"]
+        maximum = config["finder"]["max"]
+        part_search_size = config["finder"]["part_search"]["size"]
 
-        return cls(lower, upper, part_search_size)
+        return cls(minimum, maximum, part_search_size)
 
     def find_pos(self, arr_image: numpy.ndarray) -> Vec2D:
         """calc the position of the ball using the array image"""
         if self.latest_pos is None:
             # full search
             x_arr, y_arr = numpy.where(
-                ((self.lower <= arr_image) & (arr_image <= self.upper)).all(axis=2)
+                ((self.minimum <= arr_image) & (arr_image <= self.maximum)).all(axis=2)
             )
 
             pos = Vec2D(numpy.average(x_arr), numpy.average(y_arr))
@@ -55,7 +55,7 @@ class BallFinder:
                 clip_rect[1] : clip_rect[1] + clip_rect[3],
             ]
             x_arr, y_arr = numpy.where(
-                ((self.lower <= part_img_arr) & (part_img_arr <= self.upper)).all(
+                ((self.minimum <= part_img_arr) & (part_img_arr <= self.maximum)).all(
                     axis=2
                 )
             )
