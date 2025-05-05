@@ -36,4 +36,11 @@ class BallControl:
 
         self._latest_error = error
         self._latest_time = current_time
+
+        # TODO 서보 구동 코드 구현
+        # PlateController를 이용해서 target Vec2D로 공을 옮기기 위해
+        #  서보를 조종하는 코드를 구현해야됨
+        # 현재 윗 줄에 있는 PID 계산 식도 이론상 이상적인 데이터가 나올 수 있는 값으로
+        #  정확하게 output들을 분석 후, 오차 수정같은 과정이 수행되지 않았음
+
         raise NotImplementedError
